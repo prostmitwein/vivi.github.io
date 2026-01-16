@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVI Music - Future Audio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="honey-glaze"></div>
+    <div class="dots-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Custom Scrollbar -->
+    <div class="custom-scrollbar" id="customScrollbar">
+        <!-- Indicators injected by JS -->
+    </div>
+
+    <nav>
+        <a href="#">VIVI</a>
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="https://github.com/vivizzz007/vivi-music" target="_blank">GitHub</a>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home"
+            style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative;">
+            <!-- Abstract Decor -->
+            <div class="decor-shape decor-star" style="top: 20%; left: 10%;"></div>
+            <div class="decor-shape decor-blob" style="bottom: 20%; right: 10%;"></div>
+
+            <h1 class="display-huge reveal">
+                VIVI<br>
+                <span class="text-gradient">MUSIC</span>
+            </h1>
+            <p class="reveal"
+                style="font-size: 1.5rem; max-width: 700px; margin-bottom: 3rem; color: var(--color-text-dim);">
+                The ultimate YouTube Music client. <br>
+                Ad-free streaming, offline playback, and dynamic Material You themes.
+            </p>
+            <div class="reveal" style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+                <a href="#download" class="btn btn-primary">
+                    Get Started
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#features" class="btn btn-secondary">Explore</a>
+            </div>
+        </section>
+
+        <!-- Infinite Carousel -->
+        <section id="showcase" style="padding: 5rem 0; position: relative;">
+            <div class="decor-shape decor-blob"
+                style="top: -50px; left: 50%; width: 200px; height: 200px; background: var(--accent-blue);"></div>
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <!-- Doubled for infinite loop -->
+                    <div class="carousel-card"><img src="assets/1.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/2.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/3.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/4.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/5.png" alt="UI"></div>
+                    <!-- Duplicate -->
+                    <div class="carousel-card"><img src="assets/1.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/2.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/3.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/4.png" alt="UI"></div>
+                    <div class="carousel-card"><img src="assets/5.png" alt="UI"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Bento Grid -->
+        <section id="features" style="padding: 5rem 5%; position: relative;">
+            <div class="decor-shape decor-star" style="top: 10%; right: 5%; background: var(--accent-pink);"></div>
+
+            <h2 class="display-huge reveal" style="font-size: 5rem; text-align: center; margin-bottom: 5rem;">POWERHOUSE
+            </h2>
+            <div class="bento-grid">
+                <div class="bento-item large reveal">
+                    <div>
+                        <div class="feature-icon">🎨</div>
+                        <h3>Material You</h3>
+                        <p style="margin-top: 1rem; font-size: 1.2rem; color: var(--color-text-dim);">
+                            The interface morphs to match your music. Every album creates a new atmosphere.
+                        </p>
+                    </div>
+                </div>
+                <div class="bento-item reveal">
+                    <div class="feature-icon">🚫</div>
+                    <h3>Ad-Free</h3>
+                    <p style="color: var(--color-text-dim);">Pure music. No interruptions.</p>
+                </div>
+                <div class="bento-item reveal">
+                    <div class="feature-icon">💾</div>
+                    <h3>Offline</h3>
+                    <p style="color: var(--color-text-dim);">Take your library anywhere.</p>
+                </div>
+                <div class="bento-item large reveal">
+                    <div>
+                        <div class="feature-icon">🎤</div>
+                        <h3>Synced Lyrics</h3>
+                        <p style="margin-top: 1rem; font-size: 1.2rem; color: var(--color-text-dim);">
+                            Sing along with word-by-word timing. It's your personal karaoke machine.
+                        </p>
+                    </div>
+                </div>
+                <div class="bento-item reveal">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Auto</h3>
+                    <p style="color: var(--color-text-dim);">Drive safe with optimized UI.</p>
+                </div>
+                <div class="bento-item reveal">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Updates</h3>
+                    <p style="color: var(--color-text-dim);">Always fresh via OTA.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download CTA -->
+        <section id="download"
+            style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 0 5%; position: relative;">
+            <div class="decor-shape decor-blob"
+                style="bottom: 10%; left: 20%; width: 300px; height: 300px; background: var(--accent-purple);"></div>
+
+            <div class="morph-card reveal" style="text-align: center; max-width: 800px; width: 100%;">
+                <h2 style="font-size: 4rem; margin-bottom: 2rem;">READY TO DIVE IN?</h2>
+                <p style="font-size: 1.5rem; margin-bottom: 3rem; color: var(--color-text-dim);">
+                    Join thousands of users on the bleeding edge of audio.
+                </p>
+                <a href="https://github.com/vivizzz007/vivi-music/releases/latest" class="btn btn-primary"
+                    style="width: 100%; justify-content: center;">
+                    Download Latest APK
+                </a>
+                <p style="margin-top: 2rem; opacity: 0.5;">Requires Android 5.0+ • Open Source GPL-3.0</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
