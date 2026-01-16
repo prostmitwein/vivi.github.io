@@ -113,8 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const contributors = data.filter(user => user.login !== 'Copilot');
 
             // 2. Identify Key Players
-            const leadDev = contributors.find(user => user.login === 'vivizzz007');
-            const others = contributors.filter(user => user.login !== 'vivizzz007');
+            let leadDev = contributors.find(user => user.login === 'vivizzz007');
+            if (!leadDev) {
+                leadDev = {
+                    login: 'vivizzz007',
+                    avatar_url: 'https://avatars.githubusercontent.com/u/0?v=4', // Placeholder
+                    html_url: 'https://github.com/vivizzz007'
+                };
+            }
+
+            const others = contributors.filter(user => user.login !== 'vivizzz007' && user.login !== 'prostmitwein');
 
             // 3. Create Prostmitwein
             const webDev = {
@@ -141,15 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'contributor-card reveal';
 
         let title = 'Contributor';
+        let roleClass = 'role-contrib';
 
         // Special Logic
         if (user.login === 'vivizzz007') {
             card.classList.add('large');
             title = 'Lead Dev';
+            roleClass = 'role-lead';
         } else if (user.login === 'prostmitwein') {
             card.classList.add('large');
             card.classList.add('contributor-prost');
             title = 'Web Developer';
+            roleClass = 'role-web';
         }
 
         card.href = user.html_url;
@@ -157,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // If manual user, try to get avatar from github username if not provided
         let avatar = user.avatar_url;
-        if (user.login === 'prostmitwein') {
+        if (user.login === 'prostmitwein' || user.login === 'vivizzz007') {
             avatar = `https://github.com/${user.login}.png`;
         }
 
@@ -165,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${avatar}" alt="${user.login}" class="contributor-avatar">
             <div>
                 <h3>${user.login}</h3>
-                <p style="font-size: 0.9rem; opacity: 0.7;">${title}</p>
+                <span class="role-badge ${roleClass}">${title}</span>
             </div>
         `;
         contributorsGrid.appendChild(card);
