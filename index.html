@@ -10,11 +10,15 @@
 
 <body>
     <div class="honey-glaze"></div>
-    <div class="mesh-bg-dark"></div> <!-- Added for Dark Mode -->
+    <div class="night-light-glaze"></div> <!-- Permanent Night Light -->
+    <div class="mesh-bg-dark"></div>
     <div class="dots-overlay"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
 
     <!-- Custom Scrollbar -->
     <div class="custom-scrollbar" id="customScrollbar">
@@ -24,8 +28,9 @@
     <nav>
         <a href="#">VIVI</a>
         <a href="#features">Features</a>
+        <a href="#news">News</a>
+        <a href="#team">Team</a>
         <a href="#download">Download</a>
-        <a href="https://github.com/vivizzz007/vivi-music" target="_blank">GitHub</a>
         <button class="theme-toggle" id="themeToggle">🌙</button>
     </nav>
 
@@ -127,6 +132,17 @@
             </div>
         </section>
 
+        <!-- News Section -->
+        <section id="news"
+            style="min-height: 100vh; padding: 12rem 5% 5rem; position: relative; display: flex; flex-direction: column; justify-content: flex-start;">
+            <div class="decor-shape decor-blob" style="top: 20%; left: 5%; background: var(--accent-yellow);"></div>
+            <h2 class="display-huge reveal" style="font-size: 4rem; text-align: center; margin-bottom: 3rem;">LATEST
+            </h2>
+            <div class="news-grid" id="newsGrid">
+                <!-- News injected by JS -->
+            </div>
+        </section>
+
         <!-- Download CTA -->
         <section id="download"
             style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 0 5%; position: relative;">
@@ -143,6 +159,17 @@
                     Download Latest APK
                 </a>
                 <p style="margin-top: 2rem; opacity: 0.5;">Requires Android 5.0+ • Open Source GPL-3.0</p>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team"
+            style="min-height: 100vh; padding: 12rem 5% 5rem; position: relative; display: flex; flex-direction: column; justify-content: flex-start;">
+            <h2 class="display-huge reveal" style="text-align: center; font-size: 4rem; margin-bottom: 4rem;">
+                THE <span class="text-gradient">TEAM</span>
+            </h2>
+            <div class="bento-grid" id="contributorsGrid">
+                <!-- Contributors injected by JS -->
             </div>
         </section>
     </main>
