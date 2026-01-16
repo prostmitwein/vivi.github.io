@@ -1,5 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Custom Scrollbar Logic ---
+    // --- Dynamic Device Detection ---
+    const detectDevice = () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (isMobile) {
+            document.body.classList.add('is-mobile');
+            document.body.classList.remove('is-desktop');
+        } else {
+            document.body.classList.add('is-desktop');
+            document.body.classList.remove('is-mobile');
+        }
+    };
+
+    // Run on load and resize
+    detectDevice();
+    window.addEventListener('resize', detectDevice);
+
+    // --- Theme Toggle Logic ---
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    // Check saved preference
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+    }
+
+    function updateThemeIcon(theme) {
+        if (!themeToggleBtn) return;
+        // Simple text/icon swap
+        themeToggleBtn.innerHTML = theme === 'light' ? '🌙' : '☀️';
+    }
+
+    // --- Custom Scrollbar Logic (Desktop Only) ---
     const sections = document.querySelectorAll('section');
     const scrollbarContainer = document.getElementById('customScrollbar');
 
@@ -75,12 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3D Tilt Effect ---
+    // --- 3D Tilt Effect (Desktop Only) ---
     const tiltElements = document.querySelectorAll('.bento-item, .morph-card, .carousel-card');
 
     tiltElements.forEach(el => {
         el.addEventListener('mousemove', (e) => {
-            if (el.classList.contains('expanded')) return; // Disable tilt when expanded
+            // Disable tilt on mobile for performance and UX
+            if (document.body.classList.contains('is-mobile')) return;
+            if (el.classList.contains('expanded')) return;
 
             const rect = el.getBoundingClientRect();
             const x = e.clientX - rect.left;
