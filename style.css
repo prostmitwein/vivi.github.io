@@ -1,45 +1,32 @@
 :root {
-    /* --- Light Theme (Default) --- */
     --color-bg: #FEF9E7;
-    /* Off-Yellow */
     --color-surface: #FFFFFF;
     --color-surface-highlight: #FFFDF5;
     --color-text: #1C1C1C;
     --color-text-dim: rgba(28, 28, 28, 0.7);
-
-    /* Accents */
     --accent-pink: #FFB7CD;
     --accent-purple: #E0C8FF;
     --accent-blue: #AEC6FF;
     --accent-yellow: #FFD54F;
     --accent-orange: #FFB74D;
     --accent-green: #B8E0B8;
-
-    /* Physics */
     --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
     --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
-
-    /* Shapes */
     --radius-full: 999px;
     --radius-card: 48px;
     --radius-button: 24px;
-
-    /* Shape Morphing Tokens */
     --shape-morph-1: 48px 16px 48px 48px;
     --shape-morph-2: 16px 48px 48px 48px;
     --shape-morph-3: 48px 48px 16px 48px;
     --shape-morph-4: 48px 48px 48px 16px;
 }
 
-/* --- Dark Theme Override --- */
 [data-theme="dark"] {
     --color-bg: #050505;
     --color-surface: #121212;
     --color-surface-highlight: #1E1E1E;
     --color-text: #FFFFFF;
     --color-text-dim: rgba(255, 255, 255, 0.7);
-
-    /* Dark Accents (More Neon/Pastel) */
     --accent-pink: #FFD8E4;
     --accent-purple: #D0BCFF;
     --accent-blue: #B6C4FF;
@@ -55,7 +42,6 @@
     margin: 0;
     padding: 0;
     cursor: none;
-    /* Hide default cursor for custom one */
 }
 
 html {
@@ -80,7 +66,6 @@ body {
     transition: background-color 0.5s var(--ease-smooth), color 0.5s var(--ease-smooth);
 }
 
-/* Night Light Glaze (Permanent Warmth) */
 .night-light-glaze {
     position: fixed;
     top: 0;
@@ -88,11 +73,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    /* Topmost overlay */
     background: rgba(255, 190, 0, 0.15);
-    /* 70% Orange / 30% Yellow Mix */
     pointer-events: none;
-    /* mix-blend-mode: overlay; Removed for better visibility */
     transition: background 0.5s ease;
 }
 
@@ -100,7 +82,6 @@ body {
     background: rgba(255, 190, 0, 0.10);
 }
 
-/* Backgrounds */
 .honey-glaze {
     position: fixed;
     top: 0;
@@ -123,26 +104,21 @@ body {
     height: 100%;
     z-index: -1;
     background-image: radial-gradient(rgba(28, 28, 28, 0.3) 1px, transparent 1px);
-    /* Increased opacity */
     background-size: 24px 24px;
     opacity: 0.6;
     pointer-events: none;
     transition: opacity 0.5s ease;
 }
 
-/* Dark Mode Background Overrides */
 [data-theme="dark"] .honey-glaze {
     opacity: 0;
-    /* Hide honey glaze in dark mode */
 }
 
 [data-theme="dark"] .dots-overlay {
     background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
-    /* Increased opacity */
     opacity: 0.3;
 }
 
-/* Add Mesh Gradient for Dark Mode */
 .mesh-bg-dark {
     position: fixed;
     top: 0;
@@ -162,7 +138,6 @@ body {
     opacity: 0.8;
 }
 
-/* Floating Orbs */
 .orb {
     position: fixed;
     border-radius: 50%;
@@ -200,22 +175,11 @@ body {
 }
 
 @keyframes float {
-
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        transform: translate(30px, -50px) scale(1.1);
-    }
-
-    66% {
-        transform: translate(-20px, 20px) scale(0.9);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
 }
 
-/* Abstract Decorative Shapes */
 .decor-shape {
     position: absolute;
     z-index: 0;
@@ -226,7 +190,6 @@ body {
 
 [data-theme="dark"] .decor-shape {
     mix-blend-mode: screen;
-    /* Better for dark mode */
 }
 
 .decor-star {
@@ -246,46 +209,19 @@ body {
 }
 
 @keyframes rotateColor {
-    0% {
-        transform: rotate(0deg);
-        background-color: var(--accent-yellow);
-    }
-
-    33% {
-        background-color: var(--accent-pink);
-    }
-
-    66% {
-        background-color: var(--accent-blue);
-    }
-
-    100% {
-        transform: rotate(360deg);
-        background-color: var(--accent-yellow);
-    }
+    0% { transform: rotate(0deg); background-color: var(--accent-yellow); }
+    33% { background-color: var(--accent-pink); }
+    66% { background-color: var(--accent-blue); }
+    100% { transform: rotate(360deg); background-color: var(--accent-yellow); }
 }
 
 @keyframes morphColor {
-    0% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        background-color: var(--accent-green);
-    }
-
-    50% {
-        border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
-        background-color: var(--accent-purple);
-    }
-
-    100% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        background-color: var(--accent-green);
-    }
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; background-color: var(--accent-green); }
+    50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; background-color: var(--accent-purple); }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; background-color: var(--accent-green); }
 }
 
-/* Typography */
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     font-weight: 900;
     letter-spacing: -0.03em;
     line-height: 1;
@@ -322,7 +258,6 @@ h3 {
     -webkit-text-fill-color: transparent;
 }
 
-/* Solid Morphing Cards */
 .morph-card {
     background: var(--color-surface);
     border-radius: var(--radius-card);
@@ -355,7 +290,6 @@ h3 {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Buttons */
 .btn {
     padding: 1.5rem 3rem;
     border-radius: var(--radius-full);
@@ -424,7 +358,6 @@ h3 {
     border-color: white;
 }
 
-/* Bento Grid */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -477,7 +410,6 @@ h3 {
     grid-column: span 2;
 }
 
-/* Expanded State */
 .bento-item.expanded {
     grid-column: span 3;
     grid-row: span 2;
@@ -494,30 +426,12 @@ h3 {
     box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
 }
 
-/* Feature Colors */
-.bento-item:nth-child(1) .feature-icon {
-    color: var(--accent-pink);
-}
-
-.bento-item:nth-child(2) .feature-icon {
-    color: var(--accent-purple);
-}
-
-.bento-item:nth-child(3) .feature-icon {
-    color: var(--accent-blue);
-}
-
-.bento-item:nth-child(4) .feature-icon {
-    color: var(--accent-yellow);
-}
-
-.bento-item:nth-child(5) .feature-icon {
-    color: var(--accent-green);
-}
-
-.bento-item:nth-child(6) .feature-icon {
-    color: var(--accent-pink);
-}
+.bento-item:nth-child(1) .feature-icon { color: var(--accent-pink); }
+.bento-item:nth-child(2) .feature-icon { color: var(--accent-purple); }
+.bento-item:nth-child(3) .feature-icon { color: var(--accent-blue); }
+.bento-item:nth-child(4) .feature-icon { color: var(--accent-yellow); }
+.bento-item:nth-child(5) .feature-icon { color: var(--accent-green); }
+.bento-item:nth-child(6) .feature-icon { color: var(--accent-pink); }
 
 .feature-icon {
     font-size: 4rem;
@@ -529,7 +443,6 @@ h3 {
     transform: scale(1.2) rotate(10deg);
 }
 
-/* Infinite Carousel */
 .carousel-wrapper {
     width: 100%;
     overflow: hidden;
@@ -578,16 +491,10 @@ h3 {
 }
 
 @keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
-/* Navigation */
 nav {
     position: fixed;
     top: 2rem;
@@ -622,13 +529,11 @@ nav a {
     color: white;
 }
 
-nav a:hover,
-nav a.active {
+nav a:hover, nav a.active {
     opacity: 1;
     color: var(--accent-orange);
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
     background: none;
     border: none;
@@ -648,7 +553,6 @@ nav a.active {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Custom Scrollbar (Dot & Dash) */
 .custom-scrollbar {
     position: fixed;
     top: 50%;
@@ -676,7 +580,6 @@ nav a.active {
 
 .scroll-indicator.active {
     height: 40px;
-    /* Dash */
     background: var(--accent-orange);
     box-shadow: 0 0 10px var(--accent-orange);
 }
@@ -690,7 +593,6 @@ section {
     scroll-snap-stop: always;
 }
 
-/* Custom Cursor */
 .custom-cursor {
     position: fixed;
     width: 20px;
@@ -717,7 +619,6 @@ section {
     opacity: 0.8;
 }
 
-/* News Section */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -752,7 +653,6 @@ section {
     display: block;
 }
 
-/* Contributor Card */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -775,13 +675,10 @@ section {
     color: var(--color-text);
     border: 1px solid rgba(0, 0, 0, 0.05);
     width: 100%;
-    /* Fill grid cell */
     height: 100%;
-    /* Uniform height */
 }
 
 .contributor-card.large {
-    /* No special sizing, just same as others */
     width: 100%;
 }
 
@@ -796,17 +693,12 @@ section {
     z-index: 2;
 }
 
-@media (max-width: 1024px) {
-    /* This media query is no longer needed for contributor-card sizing due to grid auto-fit */
-}
-
 @media (max-width: 768px) {
     .team-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* Role Badges (Frosted Neon) */
 .role-badge {
     display: inline-flex;
     align-items: center;
@@ -870,10 +762,8 @@ section {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Special Prostmitwein Hover */
 .contributor-prost:hover {
     background: rgba(255, 213, 79, 0.2);
-    /* Yellow tint */
     backdrop-filter: blur(10px);
     border-color: var(--accent-yellow);
     box-shadow: 0 0 30px rgba(255, 213, 79, 0.4);
@@ -886,36 +776,13 @@ section {
     object-fit: cover;
 }
 
-/* --- Mobile Optimization (Dynamic & Responsive) --- */
 @media (max-width: 768px) {
-    * {
-        cursor: auto;
-    }
-
-    /* Restore cursor on mobile */
-    .custom-cursor {
-        display: none;
-    }
-
-    /* Layout */
-    .bento-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .bento-item.large {
-        grid-column: span 1;
-    }
-
-    .bento-item.expanded {
-        grid-column: span 1;
-    }
-
-    /* Typography */
-    .display-huge {
-        font-size: 4rem;
-    }
-
-    /* Navigation: Bottom Bar */
+    * { cursor: auto; }
+    .custom-cursor { display: none; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-item.large { grid-column: span 1; }
+    .bento-item.expanded { grid-column: span 1; }
+    .display-huge { font-size: 4rem; }
     nav {
         top: auto;
         bottom: 2rem;
@@ -923,36 +790,133 @@ section {
         justify-content: space-between;
         padding: 1rem 1.5rem;
         backdrop-filter: blur(20px);
-        /* Ensure glass effect on mobile */
     }
-
-    /* Hide Desktop Elements */
-    .custom-scrollbar {
-        display: none;
-    }
-
-    /* Touch Targets */
+    .custom-scrollbar { display: none; }
     .btn {
         padding: 1.2rem 2rem;
         width: 100%;
         justify-content: center;
     }
-
-    /* Spacing */
-    .morph-card,
-    .bento-item {
-        padding: 2rem;
-    }
-
-    #home {
-        padding-top: 2rem;
-    }
-
-    /* Disable Heavy Hover Effects */
-    .morph-card:hover,
-    .bento-item:hover,
-    .carousel-card:hover {
+    .morph-card, .bento-item { padding: 2rem; }
+    #home { padding-top: 2rem; }
+    .morph-card:hover, .bento-item:hover, .carousel-card:hover {
         transform: none;
         box-shadow: none;
     }
+}
+
+/* New Utility Classes for Inline Styles */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+    position: relative;
+}
+
+.decor-pos-1 { top: 20%; left: 10%; }
+.decor-pos-2 { bottom: 20%; right: 10%; }
+.decor-pos-3 { top: -50px; left: 50%; width: 200px; height: 200px; background: var(--accent-blue); }
+.decor-pos-4 { top: 10%; right: 5%; background: var(--accent-pink); }
+.decor-pos-5 { top: 20%; left: 5%; background: var(--accent-yellow); }
+.decor-pos-6 { bottom: 10%; left: 20%; width: 300px; height: 300px; background: var(--accent-purple); }
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin-bottom: 3rem;
+    color: var(--color-text-dim);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.showcase-section { padding: 5rem 0; position: relative; }
+.features-section { padding: 5rem 5%; position: relative; }
+
+.section-title-large {
+    font-size: 5rem;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.bento-text {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-text-dim);
+}
+
+.bento-text-small { color: var(--color-text-dim); }
+
+.news-section {
+    min-height: 100vh;
+    padding: 12rem 5% 5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.section-title {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.download-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    position: relative;
+}
+
+.download-card {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.download-title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+.download-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: var(--color-text-dim);
+}
+
+.btn-full {
+    width: 100%;
+    justify-content: center;
+}
+
+.download-footer {
+    margin-top: 2rem;
+    opacity: 0.5;
+}
+
+.team-section {
+    min-height: 100vh;
+    padding: 12rem 5% 5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.team-title {
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 4rem;
 }

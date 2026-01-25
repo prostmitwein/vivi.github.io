@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Dynamic Device Detection ---
     const detectDevice = () => {
         const isMobile = window.matchMedia("(max-width: 768px)").matches;
         if (isMobile) {
@@ -12,9 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     detectDevice();
-    window.addEventListener('resize', detectDevice);
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(detectDevice, 250);
+    });
 
-    // --- Theme Toggle Logic ---
     const themeToggleBtn = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
 
@@ -38,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.innerHTML = theme === 'light' ? '🌙' : '☀️';
     }
 
-    // --- Custom Cursor Logic ---
     const cursor = document.getElementById('customCursor');
     if (cursor && !document.body.classList.contains('is-mobile')) {
         document.addEventListener('mousemove', (e) => {
@@ -46,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Hover effects
         const hoverElements = document.querySelectorAll('a, button, .bento-item, .morph-card');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- News Fetching Logic (Index Page) ---
     const newsContainer = document.getElementById('newsGrid');
     if (newsContainer) {
         fetchNews();
@@ -68,21 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchNews() {
         try {
-            // 1. Fetch list of files in news directory
             const response = await fetch('https://api.github.com/repos/vivizzz007/vivi-music/contents/news');
             const files = await response.json();
 
-            // 2. Filter for JSON files
             const jsonFiles = files.filter(file => file.name.endsWith('.json'));
 
-            // 3. Fetch content of each JSON file
             for (const file of jsonFiles) {
                 const contentRes = await fetch(file.download_url);
                 const newsItem = await contentRes.json();
                 renderNewsItem(newsItem);
             }
         } catch (error) {
-            console.error('Error fetching news:', error);
             if (newsContainer) newsContainer.innerHTML = '<p>Failed to load news.</p>';
         }
     }
@@ -96,9 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>${item.description || item.content || 'No description available.'}</p>
         `;
         newsContainer.appendChild(card);
+        
+        // Observe the new card
+        if (revealObserver) revealObserver.observe(card);
     }
 
-    // --- Contributors Fetching Logic (Contributors Page) ---
     const contributorsGrid = document.getElementById('contributorsGrid');
     if (contributorsGrid) {
         fetchContributors();
@@ -109,32 +106,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('https://api.github.com/repos/vivizzz007/vivi-music/contributors');
             const data = await response.json();
 
-            // 1. Filter out Copilot
             const contributors = data.filter(user => user.login !== 'Copilot');
 
-            // 2. Identify Key Players
             let leadDev = contributors.find(user => user.login === 'vivizzz007');
             if (!leadDev) {
                 leadDev = {
                     login: 'vivizzz007',
-                    avatar_url: 'https://avatars.githubusercontent.com/u/0?v=4', // Placeholder
+                    avatar_url: 'https://avatars.githubusercontent.com/u/0?v=4',
                     html_url: 'https://github.com/vivizzz007'
                 };
             }
 
             const others = contributors.filter(user => user.login !== 'vivizzz007' && user.login !== 'prostmitwein');
 
-            // 3. Create Prostmitwein
             const webDev = {
                 login: 'prostmitwein',
-                avatar_url: 'https://avatars.githubusercontent.com/u/0?v=4', // Placeholder
+                avatar_url: 'https://avatars.githubusercontent.com/u/0?v=4',
                 html_url: 'https://linktr.ee/prostmitwein'
             };
 
-            // 4. Sort: Lead Dev, Web Dev, then others
             const sortedTeam = [leadDev, webDev, ...others];
 
-            // 5. Render
             sortedTeam.forEach(user => {
                 if (user) renderContributor(user);
             });
@@ -151,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let title = 'Contributor';
         let roleClass = 'role-contrib';
 
-        // Special Logic
         if (user.login === 'vivizzz007') {
             card.classList.add('large');
             title = 'Lead Dev';
@@ -166,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         card.href = user.html_url;
         card.target = '_blank';
 
-        // If manual user, try to get avatar from github username if not provided
         let avatar = user.avatar_url;
         if (user.login === 'prostmitwein' || user.login === 'vivizzz007') {
             avatar = `https://github.com/${user.login}.png`;
@@ -180,20 +170,20 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         contributorsGrid.appendChild(card);
+        
+        // Observe the new card
+        if (revealObserver) revealObserver.observe(card);
     }
 
-    // --- Custom Scrollbar Logic (Desktop Only) ---
     const sections = document.querySelectorAll('section');
     const scrollbarContainer = document.getElementById('customScrollbar');
 
     if (scrollbarContainer && sections.length > 0) {
-        // Create indicators
         sections.forEach((section, index) => {
             const indicator = document.createElement('div');
             indicator.classList.add('scroll-indicator');
             if (index === 0) indicator.classList.add('active');
 
-            // Click to scroll
             indicator.addEventListener('click', () => {
                 section.scrollIntoView({ behavior: 'smooth' });
             });
@@ -203,18 +193,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const indicators = document.querySelectorAll('.scroll-indicator');
 
-        // Observer to update active indicator
         const observerOptions = {
-            threshold: 0.5 // Trigger when 50% of section is visible
+            threshold: 0.5
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Find index of intersecting section
                     const index = Array.from(sections).indexOf(entry.target);
 
-                    // Update indicators
                     indicators.forEach((ind, i) => {
                         if (i === index) {
                             ind.classList.add('active');
@@ -229,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => observer.observe(section));
     }
 
-    // --- Interactive Expanding Pills (Bento Items) ---
     const bentoItems = document.querySelectorAll('.bento-item');
 
     bentoItems.forEach(item => {
@@ -251,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3D Tilt Effect (Desktop Only) ---
     const tiltElements = document.querySelectorAll('.bento-item, .morph-card, .carousel-card');
 
     tiltElements.forEach(el => {
@@ -277,29 +262,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Smooth Reveal on Scroll ---
     const revealElements = document.querySelectorAll('.reveal');
-
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-
-        revealElements.forEach((reveal) => {
-            const elementTop = reveal.getBoundingClientRect().top;
-
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.style.opacity = '1';
-                reveal.style.transform = 'translateY(0) scale(1)';
+    
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0) scale(1)';
+                observer.unobserve(entry.target);
             }
         });
-    };
+    }, {
+        threshold: 0.1
+    });
 
     revealElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(50px) scale(0.95)';
         el.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        revealObserver.observe(el);
     });
-
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
 });

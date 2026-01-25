@@ -1,0 +1,48 @@
+VIVI Music - Website Documentation
+
+1. Project Overview
+-------------------
+VIVI Music is a modern, high-performance website for the VIVI Music YouTube Music client.
+The site features a dynamic "Material You" aesthetic, smooth animations, and a responsive design.
+It is built using vanilla HTML, CSS, and JavaScript, with no external framework dependencies.
+
+2. File Structure
+-----------------
+- index.html: The main structure of the website.
+- style.css:  Contains all styling, variables, and animations.
+- script.js:  Handles logic for the theme toggle, custom cursor, scroll animations, and API data fetching.
+- assets/:    Directory for images and other static media.
+
+3. Setup Instructions
+---------------------
+This is a static website. No build process is required.
+To run it locally:
+1. Open the folder in VS Code or any text editor.
+2. Open `index.html` in your browser.
+   OR
+   Use a local server (e.g., Live Server extension) for better performance with fetch requests.
+
+4. Customization Guide
+----------------------
+Colors:
+Modify the CSS variables in the `:root` section of `style.css` to change the color scheme.
+Example:
+--accent-pink: #FFB7CD;
+--accent-purple: #E0C8FF;
+
+Images:
+Replace images in the `assets/` folder. Ensure filenames match those referenced in `index.html` or `script.js`.
+
+Content:
+- News: Fetched dynamically from the GitHub repository (`news/` folder).
+- Contributors: Fetched dynamically from the GitHub repository contributors list.
+
+5. Performance Optimizations
+----------------------------
+- Scroll Animations: Uses `IntersectionObserver` for efficient, jank-free revealing of elements.
+- Device Detection: Automatically disables heavy effects (like the custom cursor and tilt) on mobile devices.
+- Asset Loading: Images use `loading="lazy"` to improve initial load time.
+
+6. License
+----------
+This project is open-source.
